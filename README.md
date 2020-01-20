@@ -7,7 +7,7 @@
 * Add following PATH variables to .bashrc
     * export LD_LIBRARY_PATH="/opt/cplex128/cplex/bin/X86-64_linux":$LD_LIBRARY_PATH 
     * export LD_LIBRARY_PATH="/opt/cplex128/cplex/bin/x86-64_linux":$LD_LIBRARY_PATH 
-    * export CLASSPATH="/opt/cplex1263/cplex/lib/cplex.jar":$CLASSPATH
+    * export CLASSPATH="/opt/cplex128/cplex/lib/cplex.jar":$CLASSPATH
 
 ## Install SCIP
 * Download scipoptsuite-5.0.1 binaries for Linux, i.e., scipoptsuite-5.0.1.tgz 
@@ -31,8 +31,9 @@
     * To run SCIP standalone after compilation, enter `/path/to/local/usr/local/bin/scip`
   
 ## Install Julia
-* Download and install Julia Version 1.1.0
-* To use Julia, 
+* Download and install Julia Version 1.1.0. See for example: (https://github.com/gher-ulg/Documentation/wiki/Install-julia-on-Linux)
+* To use Julia, enter `~/julia-1.1.0/bin/julia`
+* To add packages, use `import Pkg` and `Pkg.add("package_name")`
 
 # Add CPLEX, SCIP, OOESAlgorithm and other required packages in Julia
 * To use SCIP in Julia, use the following steps:
@@ -83,41 +84,43 @@
     * Open Makefile-Release.mk
     * Modify the **#Link Libraries and Options**, and **#Build Targets** to link CPLEX libraries and include paths by changing the following parts:<br/>
     * Under **# Link Libraries and Options**, modify the following parts: <br/>
-        * `LDLIBSOPTIONS=/opt/cplex128/cplex/lib/x86-64_linux/static_pic/libilocplex.a /opt/cplex128/cplex/lib/x86-64_linux/static_pic/libcplex.a /opt/cplex128/concert/lib/x86-64_linux/static_pic/libconcert.a lm -lpthread -ldl`<br/>
+        * `LDLIBSOPTIONS=/path/to/cplex128/cplex/lib/x86-64_linux/static_pic/libilocplex.a /path/to/cplex128/cplex/lib/x86-64_linux/static_pic/libcplex.a /path/to/cplex128/concert/lib/x86-64_linux/static_pic/libconcert.a lm -lpthread -ldl`<br/>
     * Under **# Build Targets**, modify the following parts: <br/>
-        * `HOM_LPCreator: /opt/cplex128/cplex/lib/x86-64_linux/static_pic/libilocplex.a`
+        * `HOM_LPCreator: /path/to/cplex128/cplex/lib/x86-64_linux/static_pic/libilocplex.a`
 
-        * `HOM_LPCreator: /opt/cplex128/cplex/lib/x86-64_linux/static_pic/libcplex.a`
+        * `HOM_LPCreator: /path/to/cplex128/cplex/lib/x86-64_linux/static_pic/libcplex.a`
 
-        * `HOM_LPCreator: /opt/cplex128/concert/lib/x86-64_linux/static_pic/libconcert.a`
+        * `HOM_LPCreator: /path/to/cplex128/concert/lib/x86-64_linux/static_pic/libconcert.a`
     
-        * `$(COMPILE.cc) -O2 -DIL_STD -I/opt/cplex128/concert/include-I/opt/cplex128/concert/include-MMD -MP -MF "$@.d" -o ${OBJECTDIR}/main.o main.cpp`
+        * `$(COMPILE.cc) -O2 -DIL_STD -I/path/to/cplex128/concert/include-I/opt/cplex128/concert/include-MMD -MP -MF "$@.d" -o ${OBJECTDIR}/main.o main.cpp`
   
     * Open Makefile-Debug.mk
     * Modify the **#Link Libraries and Options**, and **#Build Targets** to link CPLEX libraries and include paths by changing the following parts:<br/>
     * Under **# Link Libraries and Options**, modify the following parts: <br/>
-        * `LDLIBSOPTIONS=/opt/cplex128/cplex/lib/x86-64_linux/static_pic /libilocplex.a /opt/cplex128/cplex/lib/x86-64_linux/static_pic /libcplex.a /opt/cplex128/cplex/lib/x86-64_linux/static_pic /libconcert.a -lm -lpthread -ldl`
+        * `LDLIBSOPTIONS=/path/to/cplex128/cplex/lib/x86-64_linux/static_pic /libilocplex.a /path/to/cplex128/cplex/lib/x86-64_linux/static_pic /libcplex.a /path/to/cplex128/cplex/lib/x86-64_linux/static_pic /libconcert.a -lm -lpthread -ldl`
     * Under **# Build Targets**, modify the following parts: <br/>
-        * `HOM_LPCreator: /opt/cplex128/cplex/lib/x86-64_linux/static_pic/libilocplex.a`
+        * `HOM_LPCreator: /path/to/cplex128/cplex/lib/x86-64_linux/static_pic/libilocplex.a`
 
-        * `HOM_LPCreator: /opt/cplex128/cplex/lib/x86-64_linux/static_pic/libcplex.a`
+        * `HOM_LPCreator: /path/to/cplex128/cplex/lib/x86-64_linux/static_pic/libcplex.a`
 
-        * `HOM_LPCreator: /opt/cplex128/concert/lib/x86-64_linux/static_pic/libconcert.a`
+        * `HOM_LPCreator: /path/to/cplex128/concert/lib/x86-64_linux/static_pic/libconcert.a`
 
-        * `$(COMPILE.cc) -g -DIL_STD -I/opt/cplex128/concert/include-I/opt/cplex128/concert/include-MMD -MP -MF "$@.d" -o ${OBJECTDIR}/main.o main.cpp`
+        * `$(COMPILE.cc) -g -DIL_STD -I/path/to/cplex128/concert/include-I/opt/cplex128/concert/include-MMD -MP -MF "$@.d" -o ${OBJECTDIR}/main.o main.cpp`
 
 ## Executing the Script
-* Given a data file Input_File.txt, run the following script on command line inside the directory HOM-LPCreator:
+* Given a data file Input_File.txt, run the following standalone script line by line in command line inside the directory HOM-LPCreator:
     * `#! /bin/sh`
     * `make clean`
     * `make`
     *`./HOM_LPCreator Input_File.txt`
-
+* Or else, create a _script_ file and copy and paste above lines of code inside the file. Then, run the following commands from inside the directory HOM-LPCreator
+    * `chmod +x script`
+    * `$ ./script`
 * The program gives Model.lp as its output
 * The program also gives optimizer_output_file1.txt and optimizer_output_file2.txt as output. These files will in turn be modified by the _Optimizer_
 
 
-# Running the final script file with julia
+# Running the final script file with Julia
 * To tell your operating system that it should run the script using Julia, you can use what is called the shebang syntax. To do this, just use the following line on the very top of your script: #!/usr/bin/env julia
 * With this as the first line of the script, the OS will search for "julia" on the path, and use it to run the script.
   
