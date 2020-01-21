@@ -115,7 +115,7 @@
     * `make`
     * `./HOM_LPCreator Input_File.txt`
     * `julia -p8 optimizer.jl`  //-p8 represents the number of threads/processes Julia can use.  
-    * The executable _HOM_LPCreator_ gives Model.lp as its output. The program also gives optimizer_output_file1.txt and optimizer_output_file2.txt as output. These files are in turn modified by _optimizer.jl_
+    * The executable _HOM_LPCreator_ gives Model.lp as its output. The program also gives optimizer_output_file1.txt as output. The file is in turn modified by _optimizer.jl_
 * Else, create a _script_ file, for instance _optimizer.sh_, and copy and paste above lines of code inside the file. Then, run the following commands from inside the directory HOM-LPCreator
     * `chmod +x optimizer.sh`
     * `ls -l optimizer.sh`
