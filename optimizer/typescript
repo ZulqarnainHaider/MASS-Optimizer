@@ -1,0 +1,46 @@
+Script started on Mon 20 Jan 2020 02:35:41 PM EST
+]0;zulqarnain@julia: ~/workspace/WWTP/WWTP/HOM-LPCreatorzulqarnain@julia:~/workspace/WWTP/WWTP/HOM-LPCreator$ chmod +x script-name-here[K[K[K[K[K[K[K[K[K[K
+]0;zulqarnain@julia: ~/workspace/WWTP/WWTP/HOM-LPCreatorzulqarnain@julia:~/workspace/WWTP/WWTP/HOM-LPCreator$ ls -l script
+-rwxrwxr-x 1 zulqarnain zulqarnain 60 Jan 20 14:34 [0m[01;32mscript[0m
+]0;zulqarnain@julia: ~/workspace/WWTP/WWTP/HOM-LPCreatorzulqarnain@julia:~/workspace/WWTP/WWTP/HOM-LPCreator$ ./script-name0[K-here
+bash: ./script-name-here: No such file or directory
+]0;zulqarnain@julia: ~/workspace/WWTP/WWTP/HOM-LPCreatorzulqarnain@julia:~/workspace/WWTP/WWTP/HOM-LPCreator$ ./script-name-here[C[K[K[K[K[K[K[K[K[K[K
+"make" -f nbproject/Makefile-Debug.mk QMAKE= SUBPROJECTS= .clean-conf
+make[1]: Entering directory '/home/zulqarnain/workspace/WWTP/WWTP/HOM-LPCreator'
+rm -f -r build/Debug
+make[1]: Leaving directory '/home/zulqarnain/workspace/WWTP/WWTP/HOM-LPCreator'
+"make" -f nbproject/Makefile-Debug.mk QMAKE= SUBPROJECTS= .build-conf
+make[1]: Entering directory '/home/zulqarnain/workspace/WWTP/WWTP/HOM-LPCreator'
+"make"  -f nbproject/Makefile-Debug.mk HOM_LPCreator
+make[2]: Entering directory '/home/zulqarnain/workspace/WWTP/WWTP/HOM-LPCreator'
+mkdir -p build/Debug/GNU-Linux
+rm -f "build/Debug/GNU-Linux/main.o.d"
+g++    -c -g -DIL_STD -I/opt/cplex128/concert/include -I/opt/cplex128/cplex/include -MMD -MP -MF "build/Debug/GNU-Linux/main.o.d" -o build/Debug/GNU-Linux/main.o main.cpp
+In file included from [01m[K/opt/cplex128/cplex/include/ilcplex/ilocplexi.h:1053:0[m[K,
+                 from [01m[K/opt/cplex128/cplex/include/ilcplex/ilocplex.h:29[m[K,
+                 from [01m[Kmain.cpp:2[m[K:
+[01m[K/opt/cplex128/cplex/include/ilcplex/iloparam.h:83:12:[m[K [01;35m[Kwarning: [m[K‘[01m[KIloCplex::Param::MIP::Limits::SubMIPNodeLim[m[K’ is deprecated [-Wdeprecated-declarations]
+     struct Limits {
+[01;32m[K            ^[m[K
+[01m[K/opt/cplex128/cplex/include/ilcplex/iloparam.h:103:40:[m[K [01;36m[Knote: [m[Kdeclared here
+       static const IloCplex::LongParam SubMIPNodeLim = LongParam(CPX_PARAM_SUBM
+[01;32m[K                                        ^[m[K
+g++     -o HOM_LPCreator build/Debug/GNU-Linux/main.o /opt/cplex128/cplex/lib/x86-64_linux/static_pic/libilocplex.a /opt/cplex128/cplex/lib/x86-64_linux/static_pic/libcplex.a /opt/cplex128/concert/lib/x86-64_linux/static_pic/libconcert.a -lm -lpthread -ldl
+make[2]: Leaving directory '/home/zulqarnain/workspace/WWTP/WWTP/HOM-LPCreator'
+make[1]: Leaving directory '/home/zulqarnain/workspace/WWTP/WWTP/HOM-LPCreator'
+Default row names c1, c2 ... being created.
+]0;zulqarnain@julia: ~/workspace/WWTP/WWTP/HOM-LPCreatorzulqarnain@julia:~/workspace/WWTP/WWTP/HOM-LPCreator$ ./script-name-here[6Pls -l script[3@chmod +x[C[C[C[C[C[C[C
+]0;zulqarnain@julia: ~/workspace/WWTP/WWTP/HOM-LPCreatorzulqarnain@julia:~/workspace/WWTP/WWTP/HOM-LPCreator$ chmod +x script[7P./script-name-here[6Pls -l script
+-rwxrwxr-x 1 zulqarnain zulqarnain 75 Jan 20 14:49 [0m[01;32mscript[0m
+]0;zulqarnain@julia: ~/workspace/WWTP/WWTP/HOM-LPCreatorzulqarnain@julia:~/workspace/WWTP/WWTP/HOM-LPCreator$ ls -l script[3@chmod +x[C[C[C[C[C[C[C[7P./script
+./script: 2: ./script: : not found
+make: *** No rule to make target 'clean'.  Stop.
+./script: 4: ./script: make: not found
+Default row names c1, c2 ... being created.
+               [1m[32m_[0m
+   [1m[34m_[0m       [0m_[0m [1m[31m_[1m[32m(_)[1m[35m_[0m     |  Documentation: https://docs.julialang.org
+  [1m[34m(_)[0m     | [1m[31m(_)[0m [1m[35m(_)[0m    |
+   [0m_ _   _| |_  __ _[0m   |  Type "?" for help, "]?" for Pkg help.
+  [0m| | | | | | |/ _` |[0m  |
+  [0m| | |_| | | | (_| |[0m  |  Version 1.1.0 (2019-01-21)
+ [0m_/ |\__'_|_|_|\__'_|[0m  |  Official https://julialang.org/ re

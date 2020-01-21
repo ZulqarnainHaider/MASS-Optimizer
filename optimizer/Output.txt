@@ -1,0 +1,29 @@
+************************************************************
+**                     OOESAlgorithm                      **
+** To report any bug, email us at:                        **
+**    amsierra@mail.usf.edu   &  hcharkhgard@usf.edu      **
+**                                                        **
+** To Support us, please cite:                            **
+** Sierra-Altamiranda, A., Charkhgard, H., 2018. A new    **
+** exact algorithm to optimize a linear function over     **
+** the set of efficient solutions for bi-objective mixed  **
+** integer linear programming. INFORMS Journal on         **
+** Computing To appear.                                   **
+**                                                        **
+** Sierra-Altamiranda, A. and Charkhgard, H., 2018.       **
+** OOESAlgorithm.jl: A julia package for optimizing a     **
+** linear function over the set of efficient solutions    **
+** for bi-objective mixed integer linear programming.     **
+************************************************************
+
+Running_Time: 736.0152552127838  #IPs: 8  #Iterations: 0 
+Time_Finder_Point: 0.0   #IPs_Finder_Point: 0  Number_Finder_Point: 0 
+Time_Weighted_Sum: 0.0   #IPs_Weighted_Sum: 0   Number_Weighted_Sum: 0 
+Time_Line_Detector: 0.0   #IPs_Line_Detector: 0  Number_Line_Detector: 0 
+Time_Finder_Line: 0.0   #IPs_Finder_Line: 0  Number_Finder_Line: 0 
+Time_Finder_Triangle: 0.0   #IPs_Finder_Triangle: 0  Number_Finder_Triangle: 0 
+Time_UB_Finder_Triangle: 0.0   #IPs_UB_Finder_Triangle: 0  Number_UB_Finder_Triangle: 0 
+Z1	Z2	Connected
+3.624217319917058e9	6.622982700756018e9	false
+3.641707588710343e9	2.4992070077939442e8	false
+0.0	0.0	false
