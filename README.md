@@ -34,7 +34,8 @@
 * Download and install Julia Version 1.1.0. See for example: (https://github.com/gher-ulg/Documentation/wiki/Install-julia-on-Linux)
 * To use Julia, enter `~/julia-1.1.0/bin/julia`
 * To add packages, use `import Pkg` and `Pkg.add("package_name")`
-* To set the number of threads on the operating system level before julia starts edit the bashrc file to add the following environment variable: export JULIA_NUM_THREADS=10:$JULIA_NUM_THREADS
+* To set the number of threads on the operating system level before julia starts, edit the bashrc file to add the following environment variable: export JULIA_NUM_THREADS=10:$JULIA_NUM_THREADS. The number of threads can be modified.
+* Make sure the number of threads used by _optimizer_ is less than the number of threads available to Julia.  
 
 # Add CPLEX, SCIP, OOESAlgorithm and other required packages in Julia
 * To use SCIP in Julia, use the following steps:
