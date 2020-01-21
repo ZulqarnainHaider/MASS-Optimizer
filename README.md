@@ -112,15 +112,17 @@
     * `#! /bin/sh`
     * `make clean`
     * `make`
-    *`./HOM_LPCreator Input_File.txt`
-* Or else, create a _script_ file and copy and paste above lines of code inside the file. Then, run the following commands from inside the directory HOM-LPCreator
-    * `chmod +x script`
-    * `$ ./script`
-* The program gives Model.lp as its output
-* The program also gives optimizer_output_file1.txt and optimizer_output_file2.txt as output. These files will in turn be modified by the _Optimizer_
+    * `./HOM_LPCreator Input_File.txt`
+    * `julia -p8 optimizer.jl`  //
+    * The executable _HOM_LPCreator_ gives Model.lp as its output. The program also gives optimizer_output_file1.txt and optimizer_output_file2.txt as output. These files are in turn modified by _optimizer.jl_
+* Else, create a _script_ file, for instance _optimizer.sh_, and copy and paste above lines of code inside the file. Then, run the following commands from inside the directory HOM-LPCreator
+    * `chmod +x optimizer.sh`
+    * `ls -l optimizer.sh`
+    * `./optimizer.sh`
 
-
-# Running the final script file with Julia
-* To tell your operating system that it should run the script using Julia, you can use what is called the shebang syntax. To do this, just use the following line on the very top of your script: #!/usr/bin/env julia
-* With this as the first line of the script, the OS will search for "julia" on the path, and use it to run the script.
+## Modifying the Arguments
+* The Julia file _optimizer.jl_ contains a call to OOESAlgorithm. For example:  
+`solutions = OOES("/home/zulqarnain/workspace/WWTP/HOM-LPCreator/Model.lp",pareto_frontier=true,mipsolver=4,threads=2,parallelization=2,timelimit=60.0)`
+* The default MIP Solver is set to SCIP since mipsolver=4. To modify other arguments, edit the optimizer.jl file.
+* For details about arguments and possible options, see (https://github.com/alvsierra286/OOESAlgorithm.jl) and (http://eng.usf.edu/~amsierra/documents/Documentation_OOESAlg.pdf). 
   
