@@ -108,7 +108,7 @@
 
         * `$(COMPILE.cc) -g -DIL_STD -I/path/to/cplex128/concert/include-I/opt/cplex128/concert/include-MMD -MP -MF "$@.d" -o ${OBJECTDIR}/main.o main.cpp`
 
-## Executing the Script
+## Execute the Optimizer Script
 * Given a data file Input_File.txt, run the following standalone script line by line in command line inside the directory HOM-LPCreator:
     * `#! /bin/sh`
     * `make clean`
