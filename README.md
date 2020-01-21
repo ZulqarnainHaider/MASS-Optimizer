@@ -40,7 +40,7 @@
     * Add PATH to SCIP installation  
     * `export SCIPOPTDIR="/path/to/local":$SCIPOPTDIR`
     * Add <export SCIPOPTDIR="/path/to/local":$SCIPOPTDIR> to .bashrc file
-    * run Julia to enter Julia REPL
+    * run `Julia` to enter Julia REPL
     * `import Pkg`
     *  To enter the pkg mode (Pkg REPL) enter: `]` 
     * `add SCIP@v0.6.1`
@@ -113,7 +113,7 @@
     * `make clean`
     * `make`
     * `./HOM_LPCreator Input_File.txt`
-    * `julia -p8 optimizer.jl`  //
+    * `julia -p8 optimizer.jl`  //-p8 represents the number of threads/processes Julia can use.  
     * The executable _HOM_LPCreator_ gives Model.lp as its output. The program also gives optimizer_output_file1.txt and optimizer_output_file2.txt as output. These files are in turn modified by _optimizer.jl_
 * Else, create a _script_ file, for instance _optimizer.sh_, and copy and paste above lines of code inside the file. Then, run the following commands from inside the directory HOM-LPCreator
     * `chmod +x optimizer.sh`
@@ -122,7 +122,7 @@
 
 ## Modifying the Arguments
 * The Julia file _optimizer.jl_ contains a call to OOESAlgorithm. For example:  
-`solutions = OOES("/home/zulqarnain/workspace/WWTP/HOM-LPCreator/Model.lp",pareto_frontier=true,mipsolver=4,threads=2,parallelization=2,timelimit=60.0)`
+`solutions = OOES("/home/zulqarnain/workspace/WWTP/HOM-LPCreator/Model.lp",pareto_frontier=true,mipsolver=4,threads=8,parallelization=2,timelimit=60.0)`
 * The default MIP Solver is set to SCIP since mipsolver=4. To modify other arguments, edit the optimizer.jl file.
 * For details about arguments and possible options, see (https://github.com/alvsierra286/OOESAlgorithm.jl) and (http://eng.usf.edu/~amsierra/documents/Documentation_OOESAlg.pdf). 
   
