@@ -67,19 +67,20 @@
 * In the first step, data file Input_File.txt is converted into a .lp file model.lp. 
   
 ## Requirements/File Structure
-* The directory HOM-LPCreator must contain the following files: 
+* The directory optimizer must contain the following files: 
     * Input_File.txt : input data file in designated format
     * HOM_LPCreator: executable file which contains the object code and the library code
     *	Main.cpp: source code file
     *	Makefile: make utility for building executable from the source code
+    * optimizer.jl: Julia code for running optimizer and writing output
     * Model.lp : The output file in .lp format which contains the optimization model
 
-* The directory HOM-LPCreator should contain the following directories: 
+* The directory optimizer should contain the following directories: 
     * build : contains object files
     *	nbproject: contains project makefiles
     
 ## Modifying the Makefiles
-*	Go to Path ..\HOM-LPCreator\nbproject
+*	Go to Path ..\optimizer\nbproject
 * Modify the makefiles to add Include paths to CPLEX libraries to the makefiles
     * Open Makefile-Release.mk
     * Modify the **#Link Libraries and Options**, and **#Build Targets** to link CPLEX libraries and include paths by changing the following parts:<br/>
