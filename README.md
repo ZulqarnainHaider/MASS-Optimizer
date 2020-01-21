@@ -123,7 +123,7 @@
 
 ## Modifying the Arguments
 * The Julia file _optimizer.jl_ contains a call to OOESAlgorithm. For example:  
-`solutions = OOES("/home/zulqarnain/workspace/WWTP/HOM-LPCreator/Model.lp",pareto_frontier=true,mipsolver=4,threads=8,parallelization=2,timelimit=60.0)`
-* The default MIP Solver is set to SCIP since mipsolver=4. To modify other arguments, edit the optimizer.jl file.
+`solutions = OOES("/path/to/Model.lp",pareto_frontier=true,mipsolver=4,threads=8,parallelization=2,timelimit=60.0)`
+* The default MIP Solver is set to SCIP since mipsolver=4. To modify other arguments including the path to _Model.lp_ file, edit the optimizer.jl file.
 * For details about arguments and possible options, see (https://github.com/alvsierra286/OOESAlgorithm.jl) and (http://eng.usf.edu/~amsierra/documents/Documentation_OOESAlg.pdf). 
   
