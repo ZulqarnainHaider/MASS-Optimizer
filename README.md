@@ -49,6 +49,7 @@
     * `pin SCIP`  #this will pin the SCIP.jl version to 0.6.1 so it is compatible with SCIP installation
     * `build SCIP`
     * `using SCIP`
+    * The file /.julia/packages/SCIP/.../src/mpb_interface.jl of the package SCIP.jl v0.6.1 has to be modified manually. In lines 185, 186, 192, 193, 207 and 208, numvar(m) has to be changed by MathProgBase.numvar(m).
 * To use CPLEX in Julia, use the following steps:
     * In .bashrc add the path to CPLEX binaries in folder x86-64_linux inside CPLEX installattion by adding the following environment variable: <export CPLEX_STUDIO_BINARIES="/opt/cplex128/cplex/bin/x86-64_linux":$CPLEX_STUDIO_BINARIES>
     * `import Pkg`
