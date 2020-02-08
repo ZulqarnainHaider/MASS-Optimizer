@@ -23,10 +23,10 @@
 * Install scipoptsuite-5.0.1
     * Go to /path/to/scipoptsuite-5.0.1.tgz
     * `mkdir local`
-    * Install SCIP. For example, `make install DESTDIR=/path/to/local`
+    * From within build directory, Install SCIP. For example, `make install DESTDIR=/path/to/local`
 * Add PATH to SCIP  
-    * `export SCIPOPTDIR="/path/to/local":$SCIPOPTDIR`
-    * Add <export SCIPOPTDIR="/path/to/local":$SCIPOPTDIR> to .bashrc file 
+    * `export SCIPOPTDIR="/path/to/local/usr/local":$SCIPOPTDIR`
+    * Add <export SCIPOPTDIR="/path/to/local/usr/local":$SCIPOPTDIR> to .bashrc file 
 * run SCIP Standalone  
     * To run SCIP standalone after compilation, enter `/path/to/local/usr/local/bin/scip`
   
@@ -112,14 +112,14 @@
         * `$(COMPILE.cc) -g -DIL_STD -I/path/to/cplex128/concert/include-I/opt/cplex128/concert/include-MMD -MP -MF "$@.d" -o ${OBJECTDIR}/main.o main.cpp`
 
 # Execute the Optimizer Script
-* Given a data file Input_File.txt, run the following standalone script line by line in command line inside the directory HOM-LPCreator:
+* Given a data file Input_File.txt, run the following standalone script line by line in command line inside the directory optimizer:
     * `#! /bin/sh`
     * `make clean`
     * `make`
     * `./HOM_LPCreator Input_File.txt`
     * `julia -p8 optimizer.jl`  //-p8 represents the number of threads/processes Julia can use.  
     * The executable _HOM_LPCreator_ gives Model.lp as its output. The program also gives optimizer_output_file1.txt as output. The file is in turn modified by _optimizer.jl_
-* Else, create a _script_ file, for instance _optimizer.sh_, and copy and paste above lines of code inside the file. Then, run the following commands from inside the directory HOM-LPCreator
+* Else, create a _script_ file, for instance _optimizer.sh_, and copy and paste above lines of code inside the file. Then, run the following commands from inside the directory optimzier
     * `chmod +x optimizer.sh`
     * `ls -l optimizer.sh`
     * `./optimizer.sh`
