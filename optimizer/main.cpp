@@ -203,7 +203,39 @@ void Model_Variables() {
 }
 
 void Model_Constraints() {
-    /*1*/
+    
+		
+    /*5*/
+    for (int k = 0; k < Set_k; k++) {
+        Expr.clear();
+        for (int t = 0; t < Set_t; t++) {
+            Expr += w_kt[k][t];
+        }
+        model.add(Expr <= 1);
+    }
+    
+    /*3*/
+    for (int r = 0; r < Set_r; r++) {
+        Expr.clear();
+        for (int k = 0; k < Set_k; k++) {
+            Expr += q_rk[r][k];
+        }
+        model.add(Expr == 1);
+    }
+
+	/*4*/
+    for (int k = 0; k < Set_k; k++) {
+        Expr.clear();
+        for (int t = 0; t < Set_t; t++) {
+            Expr -= (Cap_kt[k][t] * w_kt[k][t]);
+        }
+		for (int r = 0; r < Set_r; r++) {
+            Expr += (mu * P_r[r] * q_rk[r][k]);
+        }
+        model.add(Expr <= 0);
+    }
+	
+	/*1*/
     Expr.clear();
     for (int k = 0; k < Set_k; k++) {
         for (int t = 0; t < Set_t; t++) {
@@ -221,18 +253,6 @@ void Model_Constraints() {
         }
     }
     model.add(Expr <= MG);
-
-    /*4*/
-    for (int k = 0; k < Set_k; k++) {
-        Expr.clear();
-        for (int r = 0; r < Set_r; r++) {
-            Expr += (mu * P_r[r] * q_rk[r][k]);
-        }
-        for (int t = 0; t < Set_t; t++) {
-            Expr -= (Cap_kt[k][t] * w_kt[k][t]);
-        }
-        model.add(Expr <= 0);
-    }
 
     /*6*/
     for (int r = 0; r < Set_r; r++) {
@@ -259,23 +279,7 @@ void Model_Constraints() {
         }
     }
 
-    /*3*/
-    for (int r = 0; r < Set_r; r++) {
-        Expr.clear();
-        for (int k = 0; k < Set_k; k++) {
-            Expr += q_rk[r][k];
-        }
-        model.add(Expr == 1);
-    }
 
-    /*5*/
-    for (int k = 0; k < Set_k; k++) {
-        Expr.clear();
-        for (int t = 0; t < Set_t; t++) {
-            Expr += w_kt[k][t];
-        }
-        model.add(Expr <= 1);
-    }
     /*  Expr.clear();
         for (int r = 0; r < Set_r; r++) {
             Expr += (AWT_rk[r][0]);
