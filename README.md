@@ -64,7 +64,7 @@
     * `Pkg.build("OOESAlgorithm")`
     * `using OOESAlgorithm`
     * See details here: (http://eng.usf.edu/~amsierra/documents/Documentation_OOESAlg.pdf)
- * Also add and build _DataFrames_ and _CSV_ packages
+ * Also add and build _JuMP_, _DataFrames_ and _CSV_ packages
   
 # Steps to create .lp Files
 * In the first step, data file Input_File.txt is converted into a .lp file model.lp. 
@@ -72,17 +72,18 @@
 ## Requirements/File Structure
 * The directory optimizer must contain the following files: 
     * Input_File.txt : input data file in designated format
-    * HOM_LPCreator: executable file which contains the object code and the library code
-    *	Main.cpp: source code file
-    *	Makefile: make utility for building executable from the source code
+    <!--- * HOM_LPCreator: executable file which contains the object code and the library code
+    *	Main.cpp: source code file 
+    *	Makefile: make utility for building executable from the source code -->
+    * LPCreator.jl: Julia code for creating Model.lp file given a data input file
     * optimizer.jl: Julia code for running optimizer and writing output
     * Model.lp : The output file in .lp format which contains the optimization model
 
-* The directory optimizer should contain the following directories: 
-    * build : contains object files
-    *	nbproject: contains project makefiles
+<!--- * The directory optimizer should contain the following directories: 
+    <> * build : contains object files
+    <> *	nbproject: contains project makefiles -->
     
-## Modifying the Makefiles
+<!--- ## Modifying the Makefiles
 *	Go to Path ..\optimizer\nbproject
 * Modify the makefiles to add Include paths to CPLEX libraries to the makefiles
     * Open Makefile-Release.mk
@@ -109,16 +110,17 @@
 
         * `HOM_LPCreator: /path/to/cplex128/concert/lib/x86-64_linux/static_pic/libconcert.a`
 
-        * `$(COMPILE.cc) -g -DIL_STD -I/path/to/cplex128/concert/include-I/opt/cplex128/concert/include-MMD -MP -MF "$@.d" -o ${OBJECTDIR}/main.o main.cpp`
+        * `$(COMPILE.cc) -g -DIL_STD -I/path/to/cplex128/concert/include-I/opt/cplex128/concert/include-MMD -MP -MF "$@.d" -o ${OBJECTDIR}/main.o main.cpp` -->
 
 # Execute the Optimizer Script
 * Given a data file Input_File.txt, run the following standalone script line by line in command line inside the directory optimizer:
-    * `#! /bin/sh`
+    <!--- * `#! /bin/sh`
     * `make clean`
     * `make`
-    * `./HOM_LPCreator Input_File.txt`
+    * `./HOM_LPCreator Input_File.txt` -->
+    * `julia -p8 LPCreator.jl`  //-p8 represents the number of threads/processes Julia can use.  
     * `julia -p8 optimizer.jl`  //-p8 represents the number of threads/processes Julia can use.  
-    * The executable _HOM_LPCreator_ gives Model.lp as its output. The program also gives optimizer_output_file1.txt as output. The file is in turn modified by _optimizer.jl_
+    *  _LPCreator.jl_ gives Model.lp as its output. The program also gives optimizer_output_file1.txt as output. The file is in turn modified by _optimizer.jl_
 * Else, create a _script_ file, for instance _optimizer.sh_, and copy and paste above lines of code inside the file. Then, run the following commands from inside the directory optimzier
     * `chmod +x optimizer.sh`
     * `ls -l optimizer.sh`
