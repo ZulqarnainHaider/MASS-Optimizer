@@ -118,8 +118,8 @@
     * `make clean`
     * `make`
     * `./HOM_LPCreator Input_File.txt` -->
-    * `julia -p8 LPCreator.jl`  //-p8 represents the number of threads/processes Julia can use.  
-    * `julia -p8 optimizer.jl`  //-p8 represents the number of threads/processes Julia can use.  
+    * `path/to/julia -p8 LPCreator.jl`  //For example /home/zulqarnain/workspace/WWTP/julia-1.0.5/bin/julia -p8 LPCreator.jl where -p8 represents the number of threads/processes Julia can use.  
+    * `path/to/julia -p8 optimizer.jl`  //For example /home/zulqarnain/workspace/WWTP/julia-1.0.5/bin/julia -p8 optimizer.jl where -p8 represents the number of threads/processes Julia can use. 
     *  _LPCreator.jl_ gives Model.lp as its output. The program also gives optimizer_output_file1.txt as output. The file is in turn modified by _optimizer.jl_
 * Else, create a _script_ file, for instance _optimizer.sh_, and copy and paste above lines of code inside the file. Then, run the following commands from inside the directory optimzier
     * `chmod +x optimizer.sh`
