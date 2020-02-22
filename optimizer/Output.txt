@@ -16,7 +16,7 @@
 ** for bi-objective mixed integer linear programming.     **
 ************************************************************
 
-Running_Time: 736.0152552127838  #IPs: 8  #Iterations: 0 
+Running_Time: 32027.76437020302  #IPs: 16  #Iterations: 0 
 Time_Finder_Point: 0.0   #IPs_Finder_Point: 0  Number_Finder_Point: 0 
 Time_Weighted_Sum: 0.0   #IPs_Weighted_Sum: 0   Number_Weighted_Sum: 0 
 Time_Line_Detector: 0.0   #IPs_Line_Detector: 0  Number_Line_Detector: 0 
@@ -24,6 +24,10 @@ Time_Finder_Line: 0.0   #IPs_Finder_Line: 0  Number_Finder_Line: 0
 Time_Finder_Triangle: 0.0   #IPs_Finder_Triangle: 0  Number_Finder_Triangle: 0 
 Time_UB_Finder_Triangle: 0.0   #IPs_UB_Finder_Triangle: 0  Number_UB_Finder_Triangle: 0 
 Z1	Z2	Connected
-3.624217319917058e9	6.622982700756018e9	false
-3.641707588710343e9	2.4992070077939442e8	false
-0.0	0.0	false
+3.624217319917057e9	6.622982700756017e9	false
+3.628138341223588e9	3.4504988782972975e9	false
+3.629377642935939e9	2.447784451056134e9	false
+3.6495621887966557e9	2.4823542800476184e8	false
+3.6495621887966557e9	2.4823542800476184e8	false
+3.6495621887966557e9	2.4823542800476184e8	false
+3.6495621887966557e9	2.4823542800476182e8	false

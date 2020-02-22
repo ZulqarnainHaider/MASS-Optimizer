@@ -3,7 +3,7 @@ using CSV
 using DataFrames
 using OOESAlgorithm
 df_output_1  =  CSV.read("/home/zulqarnain/workspace/WWTP/optimizer/optimizer_output_file1.txt")
-solutions = OOES("/home/zulqarnain/workspace/WWTP/optimizer/Model.lp",pareto_frontier=true,mipsolver=4,threads=8,parallelization=2,timelimit=60.0)
+solutions = OOES("/home/zulqarnain/workspace/WWTP/optimizer/Model.lp",pareto_frontier=true,mipsolver=3,threads=6,parallelization=3,timelimit=300.0)
 function myfn1!(df_output_1, solutions) 
        for i in 1:length(solutions) 
             soln = DataFrame(Sol = solutions[i].vars)
@@ -23,6 +23,6 @@ rename!(df_output_2, :x3 => :"ZE (ton CO2-eq/year)")
 for i in 1:length(solutions) 
     df_output_2[!, 1][i]= "Sol_$i"
 	df_output_2[!, 2][i]= 1/1000000*(solutions[i].obj_vals[2])
-	df_output_2[!, 3][i]= 1/1000000*(solutions[i].obj_vals[3])
+	df_output_2[!, 3][i]= 1/907185*(solutions[i].obj_vals[3])
 end
 CSV.write("/home/zulqarnain/workspace/WWTP/optimizer/optimizer_output_file2.txt", df_output_2; delim=' ')
