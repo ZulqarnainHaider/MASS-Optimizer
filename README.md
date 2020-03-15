@@ -2,12 +2,6 @@
 
 # Installation Requirements and Steps
 
-## Install CPLEX
-* Download and Install CPLEX 12.8
-* Add following PATH variables to .bashrc
-    * export LD_LIBRARY_PATH="/opt/cplex128/cplex/bin/X86-64_linux":$LD_LIBRARY_PATH 
-    * export LD_LIBRARY_PATH="/opt/cplex128/cplex/bin/x86-64_linux":$LD_LIBRARY_PATH 
-    * export CLASSPATH="/opt/cplex128/cplex/lib/cplex.jar":$CLASSPATH
 
 ## Install SCIP
 * Download scipoptsuite-5.0.1 binaries for Linux, i.e., scipoptsuite-5.0.1.tgz 
