@@ -53,7 +53,9 @@
     * `Pkg.build("OOESAlgorithm")`
     * `using OOESAlgorithm`
     * See details here: (http://eng.usf.edu/~amsierra/documents/Documentation_OOESAlg.pdf)
- * Also add and build _JuMP_, _DataFrames_ and _CSV_ packages
+ * To use multiple threads for CPLEX or SCIP solvers while solving MIP in OOES algorithm, use the following steps:
+    * The file /.julia/packages/OOESAlgorithm/faYKc/src/initial_operations.jl has to be modified manually. Modify the line 89 to 'mip_solver=SCIPSolver("display/verblevel", 0, "parallel/minnthreads", 4, "parallel/maxnthreads", 8, "limits/gap", relative_gap)'
+
   
 # Steps to create .lp Files
 * In the first step, data file Input_File.txt is converted into a .lp file model.lp. 
