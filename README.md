@@ -54,7 +54,7 @@
     * `using OOESAlgorithm`
     * See details here: (http://eng.usf.edu/~amsierra/documents/Documentation_OOESAlg.pdf)
  * To use multiple threads for CPLEX or SCIP solvers while solving MIP in OOES algorithm, use the following steps:
-    * The file /.julia/packages/OOESAlgorithm/faYKc/src/initial_operations.jl has to be modified manually. Modify the line 89 to 'mip_solver=SCIPSolver("display/verblevel", 0, "parallel/minnthreads", 4, "parallel/maxnthreads", 8, "limits/gap", relative_gap)'
+    * The file /.julia/packages/OOESAlgorithm/faYKc/src/initial_operations.jl has to be modified manually. For SCIP, modify the line 89 to `mip_solver=SCIPSolver("display/verblevel", 0, "parallel/minnthreads", 4, "parallel/maxnthreads", 8, "limits/gap", relative_gap)`. For CPLEX, modify the line 87 to `mip_solver=CplexSolver(CPX_PARAM_SCRIND=0, CPX_PARAM_THREADS=8, CPX_PARAM_EPGAP=relative_gap, CPX_PARAM_TILIM=60)`.
 
   
 # Steps to create .lp Files
