@@ -1,9 +1,8 @@
-
 using CSV
 using DataFrames
 using OOESAlgorithm
 df_output_1  =  CSV.read("./optimizer_output_file1.txt")
-solutions = OOES("./Model.lp",pareto_frontier=true,mipsolver=4,threads=8,parallelization=3,timelimit=600.0)
+solutions = OOES("./Model.lp",pareto_frontier=true,mipsolver=4, threads=8,parallelization=3,timelimit=300.0)
 function myfn1!(df_output_1, solutions) 
        for i in 1:length(solutions) 
             soln = DataFrame(Sol = solutions[i].vars)

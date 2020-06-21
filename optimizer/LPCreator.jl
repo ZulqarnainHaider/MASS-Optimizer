@@ -24,6 +24,7 @@ CPA = 0.0;
 CPB = 0.0;
 #Old Parameters#
 
+
 P_r = Array{Float64}(undef, size_r)
 for r = 1:size_r
     P_r[r] = data[r][3] ;
@@ -39,6 +40,7 @@ for k = 1:size_k
         end
     end
 end
+
 
 CC_kt = Array{Float64}(undef, size_k, size_t)
 for k = 1:size_k
@@ -77,9 +79,9 @@ end
 m = Model() # Creating an empty Model
 @variable(m,w_kt[k=1:size_k, t=1:size_t], Bin);
 @variable(m,q_rk[r=1:size_r, k=1:size_k], Bin);
-@variable(m,AWT_rk[r=1:size_r, k=1:size_k], Int);
-@variable(m,ART_rk[r=1:size_r, k=1:size_k], Int);
 @variable(m,z_rkt[r=1:size_r, k=1:size_k, t=1:size_t], Bin);
+@variable(m,0 <= AWT_rk[r=1:size_r, k=1:size_k] <= 10000000000, Int);
+@variable(m,0 <= ART_rk[r=1:size_r, k=1:size_k] <= 10000000000, Int);
 
 ###########1###############
 @expression(m, const1, sum(w_kt[k,t]*Cap_kt[k,t] for k=1:size_k, t=1:size_t) + sum(GTW*AWT_rk[r,k]*L_rk[r,k] for r=1:size_r, k=1:size_k) + sum(GTR*ART_rk[r,k]*L_rk[r,k] for r=1:size_r, k=1:size_k))
@@ -105,16 +107,16 @@ m = Model() # Creating an empty Model
 @constraint(m,[r=1:size_r,k=1:size_k,t=1:size_t], z_rkt[r,k,t] <= q_rk[r,k]);
 @constraint(m,[r=1:size_r,k=1:size_k,t=1:size_t], z_rkt[r,k,t] >= w_kt[k,t] + q_rk[r,k] -1);
 ###########OF1###############
-@expression(m, exprOF1, sum(CC_kt[k,t]*(mu/n)*P_r[r]*z_rkt[r,k,t] for r=1:size_r,k=1:size_k,t=1:size_t)
- + sum(OC_t[t]*mu*P_r[r]*q_rk[r,k] for r=1:size_r,k=1:size_k,t=1:size_t)
- - sum(SRW_t[t]*alfa*mu*P_r[r]*q_rk[r,k] for r=1:size_r,k=1:size_k,t=1:size_t)
- + sum(CTW*AWT_rk[r,k]*L_rk[r,k] for r=1:size_r,k=1:size_k)
- + sum(CTR*ART_rk[r,k]*L_rk[r,k] for r=1:size_r,k=1:size_k))
+@expression(m, exprOF1, sum((1/1000000)*CC_kt[k,t]*(mu/n)*P_r[r]*z_rkt[r,k,t] for r=1:size_r,k=1:size_k,t=1:size_t) #z_rkt[r,k,t] instead of w_kt[k,t]
+ + sum((1/1000000)*OC_t[t]*mu*P_r[r]*z_rkt[r,k,t] for r=1:size_r,k=1:size_k,t=1:size_t)
+ - sum((1/1000000)*SRW_t[t]*alfa*mu*P_r[r]*z_rkt[r,k,t] for r=1:size_r,k=1:size_k,t=1:size_t)
+ + sum((1/1000000)*CTW*AWT_rk[r,k]*L_rk[r,k] for r=1:size_r,k=1:size_k)
+ + sum((1/1000000)*CTR*ART_rk[r,k]*L_rk[r,k] for r=1:size_r,k=1:size_k))
  @constraint(m, exprOF1 == 0);
  ###########OF2###############
- @expression(m, exprOF2, sum(GP_t[t]*mu*P_r[r]*z_rkt[r,k,t] for r=1:size_r,k=1:size_k,t=1:size_t)
-  + sum(GTW*AWT_rk[r,k]*L_rk[r,k] for r=1:size_r,k=1:size_k)
-  + sum(GTR*ART_rk[r,k]*L_rk[r,k] for r=1:size_r,k=1:size_k))
+ @expression(m, exprOF2, sum((1/907185)*GP_t[t]*mu*P_r[r]*z_rkt[r,k,t] for r=1:size_r,k=1:size_k,t=1:size_t)
+  + sum((1/907185)*GTW*AWT_rk[r,k]*L_rk[r,k] for r=1:size_r,k=1:size_k)
+  + sum((1/907185)*GTR*ART_rk[r,k]*L_rk[r,k] for r=1:size_r,k=1:size_k))
   @constraint(m, exprOF2 == 0);
  ###########OF3###############
  @constraint(m, w_kt[1,1] == 0);
@@ -122,15 +124,19 @@ m = Model() # Creating an empty Model
  ###########Objective Function###############
  @expression(m, exprObj, sum(w_kt[k,t] for k=1:size_k,t=1:size_t)
   + sum(q_rk[r,k] for r=1:size_r,k=1:size_k)
+  + sum(z_rkt[r,k,t] for r=1:size_r,k=1:size_k,t=1:size_t)
   + sum(AWT_rk[r,k] for r=1:size_r,k=1:size_k)
-  + sum(ART_rk[r,k] for r=1:size_r,k=1:size_k)
-  + sum(z_rkt[r,k,t] for r=1:size_r,k=1:size_k,t=1:size_t))
+  + sum(ART_rk[r,k] for r=1:size_r,k=1:size_k))
 
 @objective(m, Min, exprObj)
 
 lp_model = MathOptFormat.LP.Model()
 MOI.copy_to(lp_model, backend(m))
 MOI.write_to_file(lp_model, "Model.lp")
+
+
+io = open("optimizer_output_file1.txt", "w");
+close(io);
 
 io = open("optimizer_output_file1.txt", "w");
 write(io, "Var_Name\t", "Var\t", "r\t", "k\t", "t\n" );
@@ -144,4 +150,22 @@ for r = 1:size_r
         println(io, "q(",r,")(",k,")\t","q\t",r,"\t",k,"\t","-\t")
     end
 end
+for r = 1:size_r
+    for k = 1:size_k
+		for t = 1:size_t
+			println(io, "z(",r,")(",k,")(",t,")\t","z\t",r,"\t",k,"\t",t)
+		end
+	end
+end
+for r = 1:size_r
+    for k = 1:size_k
+        println(io, "AWT(",r,")(",k,")\t","AWT\t",r,"\t",k,"\t","-\t")
+    end
+end
+for r = 1:size_r
+    for k = 1:size_k
+        println(io, "ART(",r,")(",k,")\t","ART\t",r,"\t",k,"\t","-\t")
+    end
+end
+
 close(io);

@@ -52,17 +52,17 @@ FFLAGS=
 ASFLAGS=
 
 # Link Libraries and Options
-LDLIBSOPTIONS=/opt/cplex128/cplex/lib/x86-64_linux/static_pic/libilocplex.a /opt/cplex128/cplex/lib/x86-64_linux/static_pic/libcplex.a /opt/cplex128/concert/lib/x86-64_linux/static_pic/libconcert.a -lm -lpthread -ldl
+LDLIBSOPTIONS=/opt/cplex1210/cplex/lib/x86-64_linux/static_pic/libilocplex.a /opt/cplex1210/cplex/lib/x86-64_linux/static_pic/libcplex.a /opt/cplex1210/concert/lib/x86-64_linux/static_pic/libconcert.a -lm -lpthread -ldl
 
 # Build Targets
 .build-conf: ${BUILD_SUBPROJECTS}
 	"${MAKE}"  -f nbproject/Makefile-${CND_CONF}.mk HOM_LPCreator
 
-HOM_LPCreator: /opt/cplex128/cplex/lib/x86-64_linux/static_pic/libilocplex.a
+HOM_LPCreator: /opt/cplex1210/cplex/lib/x86-64_linux/static_pic/libilocplex.a
 
-HOM_LPCreator: /opt/cplex128/cplex/lib/x86-64_linux/static_pic/libcplex.a
+HOM_LPCreator: /opt/cplex1210/cplex/lib/x86-64_linux/static_pic/libcplex.a
 
-HOM_LPCreator: /opt/cplex128/concert/lib/x86-64_linux/static_pic/libconcert.a
+HOM_LPCreator: /opt/cplex1210/concert/lib/x86-64_linux/static_pic/libconcert.a
 
 HOM_LPCreator: ${OBJECTFILES}
 	${LINK.cc} -o HOM_LPCreator ${OBJECTFILES} ${LDLIBSOPTIONS}
@@ -70,7 +70,7 @@ HOM_LPCreator: ${OBJECTFILES}
 ${OBJECTDIR}/main.o: main.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -DIL_STD -I/opt/cplex128/concert/include -I/opt/cplex128/cplex/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/main.o main.cpp
+	$(COMPILE.cc) -O2 -DIL_STD -I/opt/cplex1210/concert/include -I/opt/cplex1210/cplex/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/main.o main.cpp
 
 # Subprojects
 .build-subprojects:
