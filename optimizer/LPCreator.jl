@@ -107,16 +107,16 @@ m = Model() # Creating an empty Model
 @constraint(m,[r=1:size_r,k=1:size_k,t=1:size_t], z_rkt[r,k,t] <= q_rk[r,k]);
 @constraint(m,[r=1:size_r,k=1:size_k,t=1:size_t], z_rkt[r,k,t] >= w_kt[k,t] + q_rk[r,k] -1);
 ###########OF1###############
-@expression(m, exprOF1, sum((1/1000000)*CC_kt[k,t]*(mu/n)*P_r[r]*z_rkt[r,k,t] for r=1:size_r,k=1:size_k,t=1:size_t) #z_rkt[r,k,t] instead of w_kt[k,t]
- + sum((1/1000000)*OC_t[t]*mu*P_r[r]*z_rkt[r,k,t] for r=1:size_r,k=1:size_k,t=1:size_t)
- - sum((1/1000000)*SRW_t[t]*alfa*mu*P_r[r]*z_rkt[r,k,t] for r=1:size_r,k=1:size_k,t=1:size_t)
- + sum((1/1000000)*CTW*AWT_rk[r,k]*L_rk[r,k] for r=1:size_r,k=1:size_k)
- + sum((1/1000000)*CTR*ART_rk[r,k]*L_rk[r,k] for r=1:size_r,k=1:size_k))
+@expression(m, exprOF1, sum((1/1)*CC_kt[k,t]*(mu/n)*P_r[r]*z_rkt[r,k,t] for r=1:size_r,k=1:size_k,t=1:size_t) #z_rkt[r,k,t] instead of w_kt[k,t]
+ + sum((1/1)*OC_t[t]*mu*P_r[r]*z_rkt[r,k,t] for r=1:size_r,k=1:size_k,t=1:size_t)
+ - sum((1/1)*SRW_t[t]*alfa*mu*P_r[r]*z_rkt[r,k,t] for r=1:size_r,k=1:size_k,t=1:size_t)
+ + sum((1/1)*CTW*AWT_rk[r,k]*L_rk[r,k] for r=1:size_r,k=1:size_k)
+ + sum((1/1)*CTR*ART_rk[r,k]*L_rk[r,k] for r=1:size_r,k=1:size_k))
  @constraint(m, exprOF1 == 0);
  ###########OF2###############
- @expression(m, exprOF2, sum((1/907185)*GP_t[t]*mu*P_r[r]*z_rkt[r,k,t] for r=1:size_r,k=1:size_k,t=1:size_t)
-  + sum((1/907185)*GTW*AWT_rk[r,k]*L_rk[r,k] for r=1:size_r,k=1:size_k)
-  + sum((1/907185)*GTR*ART_rk[r,k]*L_rk[r,k] for r=1:size_r,k=1:size_k))
+ @expression(m, exprOF2, sum((1/1)*GP_t[t]*mu*P_r[r]*z_rkt[r,k,t] for r=1:size_r,k=1:size_k,t=1:size_t)
+  + sum((1/1)*GTW*AWT_rk[r,k]*L_rk[r,k] for r=1:size_r,k=1:size_k)
+  + sum((1/1)*GTR*ART_rk[r,k]*L_rk[r,k] for r=1:size_r,k=1:size_k))
   @constraint(m, exprOF2 == 0);
  ###########OF3###############
  @constraint(m, w_kt[1,1] == 0);
